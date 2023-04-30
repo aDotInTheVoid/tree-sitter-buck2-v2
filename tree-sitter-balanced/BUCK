@@ -1,7 +1,19 @@
 cxx_library(
-    name = "tree-sitter-balanced",
+    name = "c",
     srcs = ["src/parser.c"],
-    deps = ["//tree-sitter:tree-sitter"],
+    deps = ["//tree-sitter/lib:c"],
     visibility = ["PUBLIC"],
 )
 
+rust_library(
+    name = "rust",
+    crate_root = "bindings/rust/lib.rs",
+    crate = "tree_sitter_balanced",
+    srcs = glob(["bindings/rust/**/*.rs", "src/node-types.json"]),
+    edition = "2018",
+    deps = [
+        "//tree-sitter/lib:rust",
+        ":c",
+    ],
+    visibility = ["PUBLIC"],
+)
