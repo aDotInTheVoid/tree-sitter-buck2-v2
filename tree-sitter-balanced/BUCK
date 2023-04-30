@@ -1,0 +1,7 @@
+cxx_library(
+    name = "tree-sitter-balanced",
+    srcs = ["src/parser.c"],
+    deps = ["//tree-sitter:tree-sitter"],
+    visibility = ["PUBLIC"],
+)
+
